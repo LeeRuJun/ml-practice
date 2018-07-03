@@ -25,28 +25,6 @@ def randCent(dataSet, k):
         centroids[:, j] = minJ + rangeJ * random.rand(k, 1)
     return centroids
 
-# k-均值聚类算法
-def KMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
-    m =shape(dataSet)[0]
-    cluseterAssemet = mat(zeros((m, 2))) # 簇分配结果矩阵
-    centroids = createCent(dataSet,k)
-    clusterChanged = True
-    while clusterChanged:
-        clusterChanged = False
-        for i in range(m): # 寻找最近的质心
-            minDist = inf; minIndex = -1
-            for j in range(k):
-                distJI = distMeas(centroids[j,:], dataSet[i,:])
-                if distJI < minDist:
-                    minDsit  = distJI; minIndex = j
-                    if cluseterAssemet[i, 0] != minIndex: clusterChanged = True
-                    cluseterAssemet[i, :] = minIndex, minDsit **2
-            # print(centroids)
-            for cent in range(k): # 更新质心位置
-                ptsInClust = dataSet[nonzero(cluseterAssemet[:, 0].A == cent)[0]] # 把所有点放在这个簇里
-                centroids[cent, :] = mean(ptsInClust, axis=0) # 分配质心
-    return centroids, cluseterAssemet
-
 # 绘制散点图
 def drawScatter(plt, mydata, size=20, color='blue', mrkr='o'):
     plt.scatter(mydata.T[0].tolist(), mydata.T[1].tolist(), s=size, c=color, marker=mrkr) # 需要先把矩阵转换成list
@@ -81,7 +59,7 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
                     minDist = distJI; minIndex = j
             if clusterAssment[i,0] != minIndex: clusterChanged = True
             clusterAssment[i,:] = minIndex,minDist**2
-        for cent in range(k):#更新质心位置
+        for cent in range(k):# 更新质心位置
             ptsInClust = dataSet[nonzero(clusterAssment[:,0].A==cent)[0]]#把所有点放在这个簇里
-            centroids[cent,:] = mean(ptsInClust, axis=0) #分配质心
+            centroids[cent,:] = mean(ptsInClust, axis=0) #分配质心, mean()求平均值
     return centroids, clusterAssment
