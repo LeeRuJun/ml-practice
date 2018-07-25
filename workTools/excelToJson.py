@@ -4,11 +4,11 @@ import xlrd
 
 def readExcel():
     # 打开excel表单
-    filename = u'D:\\Users\\rj_li\\Desktop\\每月活动数据\\六月下旬游乐园视频商品列表180615.xlsx'
+    filename = u'D:\\Users\\rj_li\\Desktop\\每月活动数据\\0723海岛酒店.xlsx'
     excel = xlrd.open_workbook(filename)
 
     # 得到第一张表单
-    sheet1 = excel.sheets()[1]
+    sheet1 = excel.sheets()[0]
     #找到有几列几列
     nrows = sheet1.nrows #行数
     ncols = sheet1.ncols #列数
