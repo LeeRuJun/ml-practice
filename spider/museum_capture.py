@@ -5,6 +5,7 @@ import urllib
 import ssl
 import json
 
+
 ssl._create_default_https_context = ssl._create_unverified_context  # ssl 验证
 host = "https://armuseum.html5.qq.com"
 getMuseumList = "/api/getMuseumListV2"  # 博物馆列表api
